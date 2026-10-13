@@ -229,7 +229,7 @@ document.addEventListener('change',e=>{
 window.addEventListener('beforeunload',persist);
 $('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))closeModal();});
 
-function headerActions(){return '<button class="btn" data-action="library">나의 기록</button><button class="btn soft hide-mobile" data-action="export">기록 파일 저장</button><a class="btn" href="/teacher">교사용</a>';}
+function headerActions(){const localHost=['localhost','127.0.0.1'].includes(location.hostname);const teacherHref=localHost?'/teacher':'https://jsku-sm-pictogram-teacher.onrender.com/teacher';return `<button class="btn" data-action="library">나의 기록</button><button class="btn soft hide-mobile" data-action="export">기록 파일 저장</button><a class="btn" href="${teacherHref}">교사용</a>`;}
 function helpContent(){return `<section class="help-section"><h3>이곳은 학생용 작업실이에요.</h3><p>완성된 정답 수식 대신, 직접 생각할 질문과 선택형 힌트를 제공합니다. 선택지가 맞았다고 그림의 식까지 완성된 것은 아니에요. 찾은 중심·거리·방향·범위를 이용해 자신의 식을 세우고 Desmos에서 확인하세요.</p><p>‘처음 식 남기기’로 저장한 첫 생각은 바뀌지 않습니다. 다음 단계에서 수정 기록을 여러 번 추가해 보세요. 오류가 없어도 무엇으로 확인했는지 쓰면 됩니다. 기록은 선생님께 자동 전송되지 않아요.</p></section>${commonHelp()}`;}
 function stepDone(){const r=rec();return [!!(r.plan_observe||r.plan_reason),Object.values(r.hints||{}).some(h=>h.pick!==null&&h.pick!==undefined),!!r.first,!!r.history?.length,!!(r.evidence&&r.feeling)];}
 function stepActions(){return `<div class="step-actions">${state.step>0?`<button class="btn" data-action="step" data-id="${state.step-1}">← 이전</button>`:'<button class="btn" data-action="home">다른 그림 보기</button>'}${state.step<4?`<button class="btn primary" data-action="step" data-id="${state.step+1}">${STEPS[state.step+1]} →</button>`:'<button class="btn primary" data-action="export">기록 파일 저장</button>'}</div>`;}

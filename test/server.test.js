@@ -33,6 +33,10 @@ test('all 20 icons retain their drawing and receive equations for each shape par
 });
 
 test('teacher equation data requires a valid login session', async () => {
+  const health = await fetch(`${baseUrl}/healthz`);
+  assert.equal(health.status, 200);
+  assert.equal(await health.text(), 'ok');
+
   const denied = await fetch(`${baseUrl}/api/teacher/data`);
   assert.equal(denied.status, 401);
 

@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: jsku-sm-pictogram-teacher
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: NODE_ENV
+        value: production
+      - key: TEACHER_PASSWORD
+        sync: false

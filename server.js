@@ -194,6 +194,9 @@ function createServer({ password = process.env.TEACHER_PASSWORD, hostIsSecure = 
     const url = new URL(request.url, 'http://localhost');
     const authenticated = password && validSession(request.headers.cookie, password, Date.now(), activeSessions);
 
+    if (request.method === 'GET' && url.pathname === '/healthz') {
+      return send(response, 200, 'ok', 'text/plain; charset=utf-8');
+    }
     if (request.method === 'GET' && (url.pathname === '/' || url.pathname === '/index.html')) {
       const body = fs.readFileSync(INDEX_PATH);
       return send(response, 200, body, 'text/html; charset=utf-8');

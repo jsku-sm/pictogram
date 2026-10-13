@@ -15,7 +15,14 @@ npm start
 
 ## 배포
 
-이 인증 기능은 `index.html`을 정적으로 호스팅하는 GitHub Pages 같은 배포에서는 작동하지 않습니다. Node 서버를 실행하고 HTTPS 역방향 프록시 뒤에 배포하세요. 외부 컨테이너에서 접속할 때는 `HOST=0.0.0.0`을 설정하고, `TEACHER_PASSWORD`는 플랫폼의 비밀 환경 변수로만 저장합니다. 비밀번호를 코드, 저장소, 브라우저에 넣지 마세요.
+GitHub Pages는 정적 파일만 제공하므로 교사 인증 API를 실행할 수 없습니다. 저장소의 `render.yaml`을 이용해 Node 서버를 별도 배포하고, Pages의 교사용 메뉴는 그 서버로 연결합니다.
+
+1. 변경 사항을 GitHub 저장소에 푸시합니다.
+2. Render 대시보드에서 **New > Blueprint**를 선택하고 `jsku-sm/pictogram` 저장소를 연결합니다.
+3. 서비스 `jsku-sm-pictogram-teacher`의 환경 변수 `TEACHER_PASSWORD`에 14자 이상의 강한 비밀번호를 설정하고 배포합니다.
+4. 교사 페이지는 `https://jsku-sm-pictogram-teacher.onrender.com/teacher`에서 엽니다. 최초 배포가 끝나기 전에는 이 주소가 작동하지 않습니다.
+
+Render는 HTTPS와 포트를 제공하며 설정 파일이 `HOST=0.0.0.0` 및 `NODE_ENV=production`을 지정합니다. `TEACHER_PASSWORD`는 플랫폼의 비밀 환경 변수로만 저장하고 코드, 저장소, 브라우저에 넣지 마세요. 로컬에서는 `npm start` 실행 시 기본 `http://localhost:3000/teacher` 경로를 사용합니다.
 
 ## 제공되는 수식
 
