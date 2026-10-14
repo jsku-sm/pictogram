@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#126c65">
+<title>교사용 로그인 · 픽토그램 수업 연구실</title>
+<link rel="stylesheet" href="./teacher.css">
+<script src="./config.js" defer></script><script src="./login.js" defer></script>
+</head><body>
+<a class="skip" href="#main">본문으로 바로 가기</a>
+<header class="site-header"><div class="header-inner"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 28 28" fill="none"><circle cx="9" cy="9" r="5" stroke="currentColor" stroke-width="1.8"/><path d="M16 5h7v7M5 20h9M18 17l6 7" stroke="currentColor" stroke-width="1.8"/></svg></span><span><strong>픽토그램 수업 연구실</strong><small>PICTO LAB · THINK &amp; DRAW</small></span></div><nav class="header-nav"><span class="badge">교사 전용</span><a id="student-link" class="button" href="/">학생 화면으로</a></nav></div></header>
+<main id="main" class="container">
+<div class="login-layout">
+<section class="login-intro">
+<div class="eyebrow">TEACHER WORKSPACE</div><h1>그림 속 수학을,<br><em>수업의 언어로.</em></h1>
+<p>학생이 스스로 식을 찾아가는 동안,<br>선생님은 그림의 구성과 부분별 모범식을 확인하세요.</p>
+<div class="intro-drawing" aria-hidden="true">
+<svg viewBox="0 0 330 205" fill="none">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" stroke="#e2eae5"/></pattern></defs>
+<rect width="330" height="205" fill="url(#grid)" rx="8"/>
+<path d="M18 105H309M165 18V190" stroke="#a2b7ac"/>
+<circle cx="132" cy="77" r="49" stroke="#126c65" stroke-width="3"/>
+<path d="M168 113L218 163" stroke="#126c65" stroke-width="5" stroke-linecap="round"/>
+<circle cx="132" cy="77" r="3.5" fill="#b9683c"/>
+<path d="M132 77H181" stroke="#b9683c" stroke-width="1.5" stroke-dasharray="4 4"/>
+</svg></div><p class="intro-label">원 · 원호 · 선분 · 점, 20개 그림의 수식 자료</p>
+</section>
+<section class="login-card">
+<div id="login-content">
+<span class="badge">인증된 교사만 이용</span><h2>교사용 로그인</h2>
+<p class="lead">관리자가 설정한 교사 계정으로 로그인하세요.<br>학생 계정이나 회원가입 기능은 없습니다.</p>
+<form id="login-form" method="post" action="/api/teacher/login">
+<div class="field"><label for="username">교사 아이디</label><input id="username" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="80" placeholder="교사 아이디" required></div>
+<div class="field"><label for="password">비밀번호</label><div class="password-row"><input id="password" name="password" type="password" autocomplete="current-password" maxlength="512" placeholder="교사 비밀번호" required><button id="toggle-password" type="button" class="password-toggle" aria-label="비밀번호 표시" aria-pressed="false">보기</button></div></div>
+<button id="login-submit" class="button primary login-submit" type="submit">교사용 수식 자료 열기 →</button>
+<p id="login-error" class="error" role="alert" aria-live="polite"></p>
+<p id="login-status" class="status" role="status" aria-live="polite"></p>
+</form><div class="login-note"><strong>공용 기기에서 사용하시나요?</strong>수업을 마치면 반드시 로그아웃하세요. 비밀번호나 로그인한 기기를 학생과 공유하지 마세요.</div>
+</div>
+<div id="setup-box" class="setup-box" hidden><div class="eyebrow">SERVER REQUIRED</div><h2>교사 인증 서버가 필요합니다</h2>
+<p>학생용 화면은 HTML 파일만으로 사용할 수 있지만, 교사 로그인은 서버에서 인증해야 합니다.</p>
+<p>이 파일을 직접 열었거나 GitHub Pages에서 열었다면, 안내서대로 Node.js 서버를 배포한 후 그 서버의 <code>/teacher/login</code> 주소로 접속하세요.</p>
+<p>기존 학생용 주소를 계속 사용할 때는 <code>config.js</code>의 <code>teacherBaseUrl</code>에 실제 배포된 서버 주소를 입력하세요.</p>
+<a class="button soft" href="./index.html">학생 화면으로 돌아가기</a></div>
+<noscript><p class="error">로그인하려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+</section></div>
+<footer class="footer"><span>공통수학2 · 도형의 방정식 프로젝트</span><span>기획·제작 구정숙 · Copyright © 2026. All rights reserved.</span></footer>
+</main></body></html>

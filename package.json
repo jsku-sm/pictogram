@@ -1,12 +1,14 @@
 {
   "name": "picto-lab",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "engines": {
-    "node": ">=20"
+    "node": ">=22.9.0 <23"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node --env-file-if-exists=.env server.js",
+    "setup": "node scripts/setup.js",
+    "build:student": "node scripts/export-student.js",
     "test": "node --test"
   }
 }

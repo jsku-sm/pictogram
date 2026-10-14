@@ -1,0 +1,11 @@
+'use strict';
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.join(__dirname,'..');
+const target=path.join(root,'dist','student');
+fs.mkdirSync(target,{recursive:true});
+const files=['index.html','config.js','teacher-login.html','teacher.css','login.js'];
+for(const file of files) fs.copyFileSync(path.join(root,file),path.join(target,file));
+fs.writeFileSync(path.join(target,'.nojekyll'),'');
+console.log('dist/student 에 학생용 정적 파일을 만들었습니다.');
+console.log('교사 수식 데이터와 서버 소스는 포함되지 않습니다.');
